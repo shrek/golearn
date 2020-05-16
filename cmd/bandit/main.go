@@ -17,20 +17,25 @@ import (
 
 func Usage() {
 	fmt.Println("<command> numRuns gradientAlpha")
+	fmt.Println("    bin/bandit 100 0.1")	
 }
 
 func main() {
-	fmt.Println("hello bandit\n")
+	fmt.Println("hello bandit")
+	if len(os.Args) != 3 {
+		Usage()
+		os.Exit(1)
+	}
 	//bandit.PlotNormal()
 	k, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		Usage()
-		panic("expected arg 1 to be int")
+		os.Exit(1)
 	}
 	alpha, err := strconv.ParseFloat(os.Args[2], 64)
 	if err != nil {
 		Usage()
-		panic("expected arg w to be float")
+		os.Exit(1)
 	}
 	bandit.Run(k, alpha)
 }

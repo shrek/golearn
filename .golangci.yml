@@ -1,0 +1,13 @@
+# This file contains all available configuration options
+# with their default values.
+
+# options for analysis running
+
+linters:
+  disable-all: true
+  enable:
+    - gofmt
+  presets:
+    - bugs
+    - unused
+  fast: false

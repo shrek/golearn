@@ -13,7 +13,7 @@ import (
 )
 
 func testTensor() {
-	fmt.Println("-----Testing tensor----\n")
+	fmt.Println("-----Testing tensor----")
 	// Create a (2, 2)-Matrix of integers
 	a := tensor.New(tensor.WithShape(2, 2), tensor.WithBacking([]int{1, 2, 3, 4}))
 	fmt.Printf("a:\n%v\n", a)
@@ -27,13 +27,16 @@ func testTensor() {
 	fmt.Printf("x: %1.1f\n\n", x)
 
 	// Setting data
-	_ := b.SetAt(float32(1000), 0, 1, 2)
+	err := b.SetAt(float32(1000), 0, 1, 2)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	fmt.Printf("b:\n%v", b)
 
 }
 
 func testGorgonia() {
-	fmt.Println("-----Starting gorgonia----\n")
+	fmt.Println("-----Starting gorgonia----")
 	g := gorgonia.NewGraph()
 
 	var x, y, z *gorgonia.Node
@@ -51,8 +54,14 @@ func testGorgonia() {
 	defer machine.Close()
 
 	// set initial values then run
-	gorgonia.Let(x, 2.0)
-	gorgonia.Let(y, 2.5)
+	err = gorgonia.Let(x, 2.0)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	err = gorgonia.Let(y, 2.5)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	if err = machine.RunAll(); err != nil {
 		log.Fatal(err)
 	}
@@ -61,7 +70,7 @@ func testGorgonia() {
 }
 
 func testGonum() {
-	fmt.Println("------ testing gonum ------\n")
+	fmt.Println("------ testing gonum ------")
 
 	xs := []float64{
 		32.32, 56.98, 21.52, 44.32,

@@ -3,6 +3,8 @@ BINARIES = test kelly
 CMD_PATH = github.com/shrek/golearn/cmd
 PKG_PATH = github.com/shrek/pkg
 
+all: bandit
+
 test:
 	@mkdir -p bin
 	go build -a -o bin/test $(CMD_PATH)/test
