@@ -1,11 +1,19 @@
 
-BINARIES = test
+BINARIES = test kelly
 CMD_PATH = github.com/shrek/golearn/cmd
 PKG_PATH = github.com/shrek/pkg
 
 test:
 	@mkdir -p bin
 	go build -a -o bin/test $(CMD_PATH)/test
+
+kelly:
+	@mkdir -p bin
+	go build -a -o bin/kelly $(CMD_PATH)/kelly
+
+bandit:
+	@mkdir -p bin
+	go build -a -o bin/bandit $(CMD_PATH)/bandit
 
 lint:
 	golangci-lint run --verbose

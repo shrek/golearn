@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:967bb9f37485be86624db156d3c740d30c4f1e0a91994c1b42f2371f20abf8f6"
+  name = "github.com/ajstarks/svgo"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f189e35d30ca1f6734fcfb06af742af835afea6e"
+
+[[projects]]
   digest = "1:1f3ac7fe35397cc98b4e4b376b824eda4c98be3753925c7c996f9ed9e57d1ce1"
   name = "github.com/awalterschulze/gographviz"
   packages = [
@@ -33,6 +41,14 @@
   version = "1.01"
 
 [[projects]]
+  digest = "1:b6e21e98fcbc23345ea2e3b70766edfc7fb53c0c99966fed18e889de0fcb67f2"
+  name = "github.com/fogleman/gg"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "0403632d5b905943a1c2a5b2763aaecd568467ec"
+  version = "v1.3.0"
+
+[[projects]]
   digest = "1:e20a9d6598878d629e04541d96076bf232c1ee36f6b267c4a5dae7779f15c36a"
   name = "github.com/gogo/protobuf"
   packages = [
@@ -43,6 +59,17 @@
   pruneopts = "UT"
   revision = "5628607bb4c51c3157aacc3a50f0ab707582b805"
   version = "v1.3.1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:62c57507df491b657e9ae2645f30958d9964c8eeb380600469eedc951ebb3a0e"
+  name = "github.com/golang/freetype"
+  packages = [
+    "raster",
+    "truetype",
+  ]
+  pruneopts = "UT"
+  revision = "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4"
 
 [[projects]]
   digest = "1:112b07cad4bd500e6e445cc0b9294ca310faa41199c19475c557daa2c7519549"
@@ -59,6 +86,14 @@
   pruneopts = "UT"
   revision = "6df40a2471737b27271bdd9b900ab5f3aec746c7"
   version = "v1.12.0"
+
+[[projects]]
+  digest = "1:f2ef06d4dba3dd33bd77c5bc076801c1d3159b64630fc0143f7e072ec127b7e6"
+  name = "github.com/jung-kurt/gofpdf"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "49e44c73f28fbc4ea0b011c7d4078d0a1523e44f"
+  version = "v12.13.5"
 
 [[projects]]
   branch = "master"
@@ -85,7 +120,33 @@
   revision = "708d80f4a27458f99f8ca12bd0e638c6ee65627f"
 
 [[projects]]
-  digest = "1:f092ba9e48684af7c6a0e0da1e8deb7967b240e224f557ed01675afe410110c1"
+  branch = "master"
+  digest = "1:9484267e1687ef33dc3792edd255c8bed6ba8a8bc64e61dca1458a70729ccda3"
+  name = "golang.org/x/exp"
+  packages = ["rand"]
+  pruneopts = "UT"
+  revision = "e8c3332aa8e5b8e6acb4707c3a7e5979052b20aa"
+
+[[projects]]
+  branch = "master"
+  digest = "1:1a12a4eafdd2e65225e462bb68b99c55fd29311fc3aeb71dc2e07029ac3eff87"
+  name = "golang.org/x/image"
+  packages = [
+    "ccitt",
+    "draw",
+    "font",
+    "font/basicfont",
+    "font/plan9font",
+    "math/f64",
+    "math/fixed",
+    "tiff",
+    "tiff/lzw",
+  ]
+  pruneopts = "UT"
+  revision = "33d19683fad8d833d2299173c7bf8ced0f102764"
+
+[[projects]]
+  digest = "1:8f4df7757099e18619aa7fb66cbbed1276ac96eb512904eddd0a062433532a2c"
   name = "gonum.org/v1/gonum"
   packages = [
     "blas",
@@ -110,10 +171,37 @@
     "lapack/gonum",
     "lapack/lapack64",
     "mat",
+    "mathext",
+    "mathext/internal/amos",
+    "mathext/internal/cephes",
+    "mathext/internal/gonum",
     "stat",
+    "stat/combin",
+    "stat/distuv",
   ]
   pruneopts = "UT"
   revision = "960a37950cca5ec8d1efe76ed4eec9dfe3065bd6"
+  version = "v0.7.0"
+
+[[projects]]
+  digest = "1:f973d0a1dc0cb9183752e3f171a5aaa543e27322a8daf926eb9ab70c1ebd3593"
+  name = "gonum.org/v1/plot"
+  packages = [
+    ".",
+    "palette",
+    "plotter",
+    "plotutil",
+    "tools/bezier",
+    "vg",
+    "vg/draw",
+    "vg/fonts",
+    "vg/vgeps",
+    "vg/vgimg",
+    "vg/vgpdf",
+    "vg/vgsvg",
+  ]
+  pruneopts = "UT"
+  revision = "5f3b4ba9092b1c625bfe2e7f4a3d43e544e0d402"
   version = "v0.7.0"
 
 [[projects]]
@@ -218,7 +306,13 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "golang.org/x/exp/rand",
     "gonum.org/v1/gonum/stat",
+    "gonum.org/v1/gonum/stat/distuv",
+    "gonum.org/v1/plot",
+    "gonum.org/v1/plot/plotter",
+    "gonum.org/v1/plot/plotutil",
+    "gonum.org/v1/plot/vg",
     "gorgonia.org/gorgonia",
     "gorgonia.org/tensor",
   ]

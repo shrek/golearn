@@ -1,64 +1,63 @@
-
 package main
 
 import (
 	"fmt"
+	"log"
 	"math"
 	"sort"
-	"log"
 
-        "gorgonia.org/gorgonia"
-        "gorgonia.org/tensor"
-	
+	"gorgonia.org/gorgonia"
+	"gorgonia.org/tensor"
+
 	"gonum.org/v1/gonum/stat"
 )
 
 func testTensor() {
-	fmt.Println("-----Testing tensor----\n")	
+	fmt.Println("-----Testing tensor----\n")
 	// Create a (2, 2)-Matrix of integers
 	a := tensor.New(tensor.WithShape(2, 2), tensor.WithBacking([]int{1, 2, 3, 4}))
 	fmt.Printf("a:\n%v\n", a)
-	
+
 	// Create a (2, 3, 4)-tensor of float32s
 	b := tensor.New(tensor.WithBacking(tensor.Range(tensor.Float32, 0, 24)), tensor.WithShape(2, 3, 4))
 	fmt.Printf("b:\n%1.1f", b)
-	
+
 	// Accessing data
 	x, _ := b.At(0, 1, 2) // in Numpy syntax: b[0,1,2]
 	fmt.Printf("x: %1.1f\n\n", x)
-	
+
 	// Setting data
-	b.SetAt(float32(1000), 0, 1, 2)
+	_ := b.SetAt(float32(1000), 0, 1, 2)
 	fmt.Printf("b:\n%v", b)
-	
+
 }
 
 func testGorgonia() {
 	fmt.Println("-----Starting gorgonia----\n")
 	g := gorgonia.NewGraph()
 
-        var x, y, z *gorgonia.Node
-        var err error
+	var x, y, z *gorgonia.Node
+	var err error
 
-        // define the expression
-        x = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("x"))
-        y = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("y"))
-        if z, err = gorgonia.Add(x, y); err != nil {
-                log.Fatal(err)
-        }
+	// define the expression
+	x = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("x"))
+	y = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("y"))
+	if z, err = gorgonia.Add(x, y); err != nil {
+		log.Fatal(err)
+	}
 
-        // create a VM to run the program on
-        machine := gorgonia.NewTapeMachine(g)
-        defer machine.Close()
+	// create a VM to run the program on
+	machine := gorgonia.NewTapeMachine(g)
+	defer machine.Close()
 
-        // set initial values then run
-        gorgonia.Let(x, 2.0)
-        gorgonia.Let(y, 2.5)
-        if err = machine.RunAll(); err != nil {
-                log.Fatal(err)
-        }
+	// set initial values then run
+	gorgonia.Let(x, 2.0)
+	gorgonia.Let(y, 2.5)
+	if err = machine.RunAll(); err != nil {
+		log.Fatal(err)
+	}
 
-        fmt.Printf("%v", z.Value())
+	fmt.Printf("%v", z.Value())
 }
 
 func testGonum() {
@@ -90,7 +89,7 @@ func testGonum() {
 	fmt.Printf("mean=     %v\n", mean)
 	fmt.Printf("median=   %v\n", median)
 	fmt.Printf("variance= %v\n", variance)
-	fmt.Printf("std-dev=  %v\n", stddev)	
+	fmt.Printf("std-dev=  %v\n", stddev)
 }
 
 func main() {
